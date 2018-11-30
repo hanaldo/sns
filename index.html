@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sewing Notation</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="libs/iview/iview.css">
+        <script src="libs/phaserce.min.js"></script>
+        <script src="libs/vue.min.js"></script>
+        <script src="libs/iview/iview.min.js"></script>
+        <script src="game_model_grid.js"></script>
+    </head>
+    <body>
+        <div id="app" style="padding-top: 50px;">
+            <h1 style="text-align: center;">Sewing Notation System</h1>
+            <Row style="padding: 10px;">
+                <i-col span="1">&nbsp;</i-col>
+                <i-col span="16">
+                    <div id="phaser-example"></div>
+                </i-col>
+                <i-col span="6">
+                    <Collapse>
+                        <Panel>
+                            Patterns
+                            <p slot="content">
+                            <i-button v-on:click="addLine(0)" style="padding: 5px;" v-if="!linesOn[0]"><img src="line_left.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(0)" style="padding: 5px;" v-if="linesOn[0]" type="primary"><img src="line_left.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(1)" style="padding: 5px;" v-if="!linesOn[1]"><img src="line_top.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(1)" style="padding: 5px;" v-if="linesOn[1]" type="primary"><img src="line_top.png" width="30" height="30"/></i-button>
+                            </p>
+                        </Panel>
+                        <Panel name="2">
+                            Actions
+                            <p slot="content">
+                                <span style="color: #ff0000;">Still under development, they buttons do not work...</span><br>
+                            <i-button type="info" long>Select</i-button><br><br>
+                            <i-button type="info" long>Translate</i-button><br><br>
+                            <i-button type="info" long>Rotate</i-button><br><br>
+                            <i-button type="info" long>Scale</i-button><br><br>
+                            <i-button type="info" long>Remove</i-button><br><br>
+                            </p>
+                        </Panel>
+                    </Collapse>
+                </i-col>
+                <i-col span="1">&nbsp;</i-col>
+            </Row>
+        </div>
+        <script src="game.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
