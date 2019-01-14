@@ -25,9 +25,12 @@ function MyGrid(game, gm, x, y) {
     lineImage.ctx.rect(0, 0, 3, 94);
     lineImage.ctx.fillStyle = "#ff0000";
     lineImage.ctx.fill();
+    var leftSewLineAll = game.add.sprite(x + 65, y - 1, lineImage);
+    leftSewLineAll.addChild(game.make.sprite(-3.5, -5, cornerImage));
+    leftSewLineAll.addChild(game.make.sprite(-3.5, 88, cornerImage));
+    leftSewLineAll.angle = 45;
+    leftSewLineAll.exists = false;
     var leftSewLine = game.add.sprite(x + 65, y - 1, lineImage);
-    leftSewLine.addChild(game.make.sprite(-3.5, -5, cornerImage));
-    leftSewLine.addChild(game.make.sprite(-3.5, 88, cornerImage));
     leftSewLine.angle = 45;
     leftSewLine.exists = false;
     var leftSewLineTop = game.add.sprite(x + 65, y - 1, lineImage);
@@ -38,9 +41,12 @@ function MyGrid(game, gm, x, y) {
     leftSewLineBot.addChild(game.make.sprite(-3.5, 88, cornerImage));
     leftSewLineBot.angle = 45;
     leftSewLineBot.exists = false;
+    var rightSewLineAll = game.add.sprite(x - 1, y + 1, lineImage);
+    rightSewLineAll.addChild(game.make.sprite(-3.5, -5, cornerImage));
+    rightSewLineAll.addChild(game.make.sprite(-3.5, 88, cornerImage));
+    rightSewLineAll.angle = -45;
+    rightSewLineAll.exists = false;
     var rightSewLine = game.add.sprite(x - 1, y + 1, lineImage);
-    rightSewLine.addChild(game.make.sprite(-3.5, -5, cornerImage));
-    rightSewLine.addChild(game.make.sprite(-3.5, 88, cornerImage));
     rightSewLine.angle = -45;
     rightSewLine.exists = false;
     var rightSewLineTop = game.add.sprite(x - 1, y + 1, lineImage);
@@ -58,11 +64,11 @@ function MyGrid(game, gm, x, y) {
     lineShortImage.ctx.fillStyle = "#ff0000";
     lineShortImage.ctx.fill();
 
-    var topSewLine = game.add.sprite(x + 66, y - 1, lineShortImage);
-    topSewLine.addChild(game.make.sprite(-3.5, -5, cornerImage));
-    topSewLine.addChild(game.make.sprite(-3.5, 61, cornerImage));
-    topSewLine.angle = 90;
-    topSewLine.exists = false;
+    var topSewLineAll = game.add.sprite(x + 66, y - 1, lineShortImage);
+    topSewLineAll.addChild(game.make.sprite(-3.5, -5, cornerImage));
+    topSewLineAll.addChild(game.make.sprite(-3.5, 61, cornerImage));
+    topSewLineAll.angle = 90;
+    topSewLineAll.exists = false;
     var topSewLineRight = game.add.sprite(x + 66, y - 1, lineShortImage);
     topSewLineRight.addChild(game.make.sprite(-3.5, -5, cornerImage));
     topSewLineRight.angle = 90;
@@ -71,68 +77,53 @@ function MyGrid(game, gm, x, y) {
     topSewLineLeft.addChild(game.make.sprite(-3.5, 61, cornerImage));
     topSewLineLeft.angle = 90;
     topSewLineLeft.exists = false;
+    var topSewLine = game.add.sprite(x + 66, y - 1, lineShortImage);
+    topSewLine.angle = 90;
+    topSewLine.exists = false;
 
     var highlighted = false;
     var leftOn = this.leftOn = false;
     grid.events.onInputDown.add(function () {
-        if (LineToAdd >= 0) {//0-left, 1-top, 2-topRight, 3-topLeft, 4-leftTop, 5-leftBot, 6-right, 7-rightTop, 8-rightBot
+        if (LineToAdd >= 0) {
+            // 1-topAll, 2-topRight, 3-topLeft, 9-top
+            // 0-leftAll, 4-leftTop, 5-leftBot, 10-left
+            // 6-rightAll, 7-rightTop, 8-rightBot, 11-right
             switch (LineToAdd) {
                 case 0:
-                    leftSewLine.exists = !leftSewLine.exists;
-                    if (leftSewLine.exists) {
-                        leftSewLineTop.exists = false;
-                        leftSewLineBot.exists = false;
-                    }
+                    leftSewLineAll.exists = !leftSewLineAll.exists;
                     break;
                 case 1:
-                    topSewLine.exists = !topSewLine.exists;
-                    if (topSewLine.exists) {
-                        topSewLineRight.exists = false;
-                        topSewLineLeft.exists = false;
-                    }
+                    topSewLineAll.exists = !topSewLineAll.exists;
                     break;
                 case 2:
-                    if (topSewLine.exists) {
-                        break;
-                    }
                     topSewLineRight.exists = !topSewLineRight.exists;
                     break;
                 case 3:
-                    if (topSewLine.exists) {
-                        break;
-                    }
                     topSewLineLeft.exists = !topSewLineLeft.exists;
                     break;
                 case 4:
-                    if (leftSewLine.exists) {
-                        break;
-                    }
                     leftSewLineTop.exists = !leftSewLineTop.exists;
                     break;
                 case 5:
-                    if (leftSewLine.exists) {
-                        break;
-                    }
                     leftSewLineBot.exists = !leftSewLineBot.exists;
                     break;
                 case 6:
-                    rightSewLine.exists = !rightSewLine.exists;
-                    if (rightSewLine.exists) {
-                        rightSewLineTop.exists = false;
-                        rightSewLineBot.exists = false;
-                    }
+                    rightSewLineAll.exists = !rightSewLineAll.exists;
                     break;
                 case 7:
-                    if (rightSewLine.exists) {
-                        break;
-                    }
                     rightSewLineTop.exists = !rightSewLineTop.exists;
                     break;
                 case 8:
-                    if (rightSewLine.exists) {
-                        break;
-                    }
                     rightSewLineBot.exists = !rightSewLineBot.exists;
+                    break;
+                case 9:
+                    topSewLine.exists = !topSewLine.exists;
+                    break;
+                case 10:
+                    leftSewLine.exists = !leftSewLine.exists;
+                    break;
+                case 11:
+                    rightSewLine.exists = !rightSewLine.exists;
                     break;
                 default:
                     break;
@@ -164,12 +155,17 @@ function MyGrid(game, gm, x, y) {
 
     this.showAtTop = function () {
         game.world.bringToTop(leftSewLine);
-        game.world.bringToTop(topSewLine);
-        game.world.bringToTop(topSewLineRight);
-        game.world.bringToTop(topSewLineLeft);
+        game.world.bringToTop(leftSewLineAll);
         game.world.bringToTop(leftSewLineTop);
         game.world.bringToTop(leftSewLineBot);
+
+        game.world.bringToTop(topSewLine);
+        game.world.bringToTop(topSewLineAll);
+        game.world.bringToTop(topSewLineRight);
+        game.world.bringToTop(topSewLineLeft);
+
         game.world.bringToTop(rightSewLine);
+        game.world.bringToTop(rightSewLineAll);
         game.world.bringToTop(rightSewLineTop);
         game.world.bringToTop(rightSewLineBot);
     };

@@ -23,26 +23,32 @@
                         <Panel>
                             Patterns
                             <p slot="content">
-                            <i-button v-on:click="addLine(0)" style="padding: 5px;" v-if="!linesOn[0]"><img src="line_left.png" width="30" height="30"/></i-button>
-                            <i-button v-on:click="addLine(0)" style="padding: 5px;" v-if="linesOn[0]" type="primary"><img src="line_left.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(0)" style="padding: 5px;" v-if="!linesOn[0]"><img src="line_left_all.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(0)" style="padding: 5px;" v-if="linesOn[0]" type="primary"><img src="line_left_all.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(4)" style="padding: 5px;" v-if="!linesOn[4]"><img src="line_left_top.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(4)" style="padding: 5px;" v-if="linesOn[4]" type="primary"><img src="line_left_top.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(5)" style="padding: 5px;" v-if="!linesOn[5]"><img src="line_left_bot.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(5)" style="padding: 5px;" v-if="linesOn[5]" type="primary"><img src="line_left_bot.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(10)" style="padding: 5px;" v-if="!linesOn[10]"><img src="line_left.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(10)" style="padding: 5px;" v-if="linesOn[10]" type="primary"><img src="line_left.png" width="30" height="30"/></i-button>
                             <br/>
-                            <i-button v-on:click="addLine(1)" style="padding: 5px;" v-if="!linesOn[1]"><img src="line_top.png" width="30" height="30"/></i-button>
-                            <i-button v-on:click="addLine(1)" style="padding: 5px;" v-if="linesOn[1]" type="primary"><img src="line_top.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(1)" style="padding: 5px;" v-if="!linesOn[1]"><img src="line_top_all.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(1)" style="padding: 5px;" v-if="linesOn[1]" type="primary"><img src="line_top_all.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(2)" style="padding: 5px;" v-if="!linesOn[2]"><img src="line_top_right.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(2)" style="padding: 5px;" v-if="linesOn[2]" type="primary"><img src="line_top_right.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(3)" style="padding: 5px;" v-if="!linesOn[3]"><img src="line_top_left.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(3)" style="padding: 5px;" v-if="linesOn[3]" type="primary"><img src="line_top_left.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(9)" style="padding: 5px;" v-if="!linesOn[9]"><img src="line_top.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(9)" style="padding: 5px;" v-if="linesOn[9]" type="primary"><img src="line_top.png" width="30" height="30"/></i-button>
                             <br/>
-                            <i-button v-on:click="addLine(6)" style="padding: 5px;" v-if="!linesOn[6]"><img src="line_right.png" width="30" height="30"/></i-button>
-                            <i-button v-on:click="addLine(6)" style="padding: 5px;" v-if="linesOn[6]" type="primary"><img src="line_right.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(6)" style="padding: 5px;" v-if="!linesOn[6]"><img src="line_right_all.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(6)" style="padding: 5px;" v-if="linesOn[6]" type="primary"><img src="line_right_all.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(7)" style="padding: 5px;" v-if="!linesOn[7]"><img src="line_right_top.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(7)" style="padding: 5px;" v-if="linesOn[7]" type="primary"><img src="line_right_top.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(8)" style="padding: 5px;" v-if="!linesOn[8]"><img src="line_right_bot.png" width="30" height="30"/></i-button>
                             <i-button v-on:click="addLine(8)" style="padding: 5px;" v-if="linesOn[8]" type="primary"><img src="line_right_bot.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(11)" style="padding: 5px;" v-if="!linesOn[11]"><img src="line_right.png" width="30" height="30"/></i-button>
+                            <i-button v-on:click="addLine(11)" style="padding: 5px;" v-if="linesOn[11]" type="primary"><img src="line_right.png" width="30" height="30"/></i-button>
                             </p>
                         </Panel>
                         <Panel name="2">

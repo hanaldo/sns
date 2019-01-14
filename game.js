@@ -87,9 +87,9 @@ function create() {
 }
 
 const lineIndexGroup = [
-    [0, 4, 5], //0
-    [1, 2, 3], //1
-    [6, 7, 8]//2
+    [0, 4, 5, 10], //0
+    [1, 2, 3, 9], //1
+    [6, 7, 8, 11]//2
 ];
 
 function getLineGroup(lineIndex) {
