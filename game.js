@@ -63,7 +63,7 @@ function create() {
     line1.ctx.rect(0, 0, 3, 92);
     line1.ctx.fillStyle = "#ff0000";
     line1.ctx.fill();
-    mousePointerImages.push({model: game.add.sprite(0, 0, line1), xoff: 30, yoff: -30});
+    mousePointerImages.push({model: game.add.sprite(-50, -50, line1), xoff: 30, yoff: -30});
     mousePointerImages[0].model.angle = 45;
     mousePointerImages[0].model.exist = false;
 
@@ -72,10 +72,35 @@ function create() {
     line2.ctx.rect(0, 0, 3, 92);
     line2.ctx.fillStyle = "#ff0000";
     line2.ctx.fill();
-    mousePointerImages.push({model: game.add.sprite(0, 0, line2), xoff: 30, yoff: -20});
+    mousePointerImages.push({model: game.add.sprite(-50, -50, line2), xoff: 30, yoff: -20});
     mousePointerImages[1].model.angle = 90;
     mousePointerImages[1].model.exist = false;
 
+    var line3 = game.add.bitmapData(3, 92);
+    line3.ctx.beginPath();
+    line3.ctx.rect(0, 0, 3, 92);
+    line3.ctx.fillStyle = "#ff0000";
+    line3.ctx.fill();
+    mousePointerImages.push({model: game.add.sprite(-50, -50, line3), xoff: -30, yoff: -30});
+    mousePointerImages[2].model.angle = -45;
+    mousePointerImages[2].model.exist = false;
+}
+
+const lineIndexGroup = [
+    [0, 4, 5], //0
+    [1, 2, 3], //1
+    [6, 7, 8]//2
+];
+
+function getLineGroup(lineIndex) {
+    for (var i = 0; i < lineIndexGroup.length; i++) {
+        for (var j = 0; j < lineIndexGroup[i].length; j++) {
+            if (lineIndexGroup[i][j] === lineIndex) {
+                return i;
+            }
+        }
+    }
+    return -1;
 }
 
 function update() {
@@ -84,15 +109,18 @@ function update() {
     });
 
     if (!MouseOut && LineToAdd >= 0) {
-        mousePointerImages.forEach(function (item, index) {
-            if (index === LineToAdd && !MouseOut) {
-                item.model.x = game.input.mousePointer.x + item.xoff;
-                item.model.y = game.input.mousePointer.y + item.yoff;
-                item.model.exists = true;
-                return;
-            }
-            item.model.exists = false;
-        });
+        var lineGroup = getLineGroup(LineToAdd);
+        if (lineGroup >= 0) {
+            mousePointerImages.forEach(function (item, index) {
+                if (index === lineGroup && !MouseOut) {
+                    item.model.x = game.input.mousePointer.x + item.xoff;
+                    item.model.y = game.input.mousePointer.y + item.yoff;
+                    item.model.exists = true;
+                    return;
+                }
+                item.model.exists = false;
+            });
+        }
     }
 }
 

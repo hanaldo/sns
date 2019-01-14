@@ -3,7 +3,7 @@ var LineToAdd = -1;
 const app = new Vue({
     el: "#app",
     data: {
-        linesOn: [false, false, false, false]//0-left, 1-top, 2-right...
+        linesOn: [false, false, false, false, false, false, false, false, false]//0-left, 1-top, 2-topRight...
     },
     methods: {
         addLine(i) {
