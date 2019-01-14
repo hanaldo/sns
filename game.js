@@ -7,6 +7,7 @@ var game = new Phaser.Game(GameWidth, GameHeight, Phaser.CANVAS, "phaser-example
 var mousePointerImages = [];
 var GameModels = [];
 var MouseOut = true;
+var PointerRemove;
 
 function preload() {
     game.stage.disableVisibilityChange = true;
@@ -14,6 +15,8 @@ function preload() {
     game.scale.maxWidth = GameWidth;
     game.scale.maxHeight = GameHeight;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    game.load.image("remove", "images/icon_remove.png");
 }
 
 function create() {
@@ -57,6 +60,8 @@ function create() {
     GameModels.forEach(function (model) {
         model.showAtTop();
     });
+    PointerRemove = game.add.sprite(-100, -100, "remove");
+    PointerRemove.scale.setTo(0.5);
 
     var line1 = game.add.bitmapData(3, 92);
     line1.ctx.beginPath();
@@ -121,6 +126,9 @@ function update() {
                 item.model.exists = false;
             });
         }
+    } else if (!MouseOut && ActionNow === "remove") {
+        PointerRemove.x = game.input.mousePointer.x;
+        PointerRemove.y = game.input.mousePointer.y;
     }
 }
 

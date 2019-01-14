@@ -81,55 +81,34 @@ function MyGrid(game, gm, x, y) {
     topSewLine.angle = 90;
     topSewLine.exists = false;
 
-    var highlighted = false;
-    var leftOn = this.leftOn = false;
-    grid.events.onInputDown.add(function () {
-        if (LineToAdd >= 0) {
-            // 1-topAll, 2-topRight, 3-topLeft, 9-top
-            // 0-leftAll, 4-leftTop, 5-leftBot, 10-left
-            // 6-rightAll, 7-rightTop, 8-rightBot, 11-right
-            switch (LineToAdd) {
-                case 0:
-                    leftSewLineAll.exists = !leftSewLineAll.exists;
-                    break;
-                case 1:
-                    topSewLineAll.exists = !topSewLineAll.exists;
-                    break;
-                case 2:
-                    topSewLineRight.exists = !topSewLineRight.exists;
-                    break;
-                case 3:
-                    topSewLineLeft.exists = !topSewLineLeft.exists;
-                    break;
-                case 4:
-                    leftSewLineTop.exists = !leftSewLineTop.exists;
-                    break;
-                case 5:
-                    leftSewLineBot.exists = !leftSewLineBot.exists;
-                    break;
-                case 6:
-                    rightSewLineAll.exists = !rightSewLineAll.exists;
-                    break;
-                case 7:
-                    rightSewLineTop.exists = !rightSewLineTop.exists;
-                    break;
-                case 8:
-                    rightSewLineBot.exists = !rightSewLineBot.exists;
-                    break;
-                case 9:
-                    topSewLine.exists = !topSewLine.exists;
-                    break;
-                case 10:
-                    leftSewLine.exists = !leftSewLine.exists;
-                    break;
-                case 11:
-                    rightSewLine.exists = !rightSewLine.exists;
-                    break;
-                default:
-                    break;
-            }
-        }
+    // 1-topAll, 2-topRight, 3-topLeft, 9-top
+    // 0-leftAll, 4-leftTop, 5-leftBot, 10-left
+    // 6-rightAll, 7-rightTop, 8-rightBot, 11-right
+    var lines = new Array(12);
+    lines[0] = leftSewLineAll;
+    lines[1] = topSewLineAll;
+    lines[2] = topSewLineRight;
+    lines[3] = topSewLineLeft;
+    lines[4] = leftSewLineTop;
+    lines[5] = leftSewLineBot;
+    lines[6] = rightSewLineAll;
+    lines[7] = rightSewLineTop;
+    lines[8] = rightSewLineBot;
+    lines[9] = topSewLine;
+    lines[10] = leftSewLine;
+    lines[11] = rightSewLine;
 
+    var highlighted = false;
+    grid.events.onInputDown.add(function () {
+        if (ActionNow === "remove") {
+            lines.forEach(function (model) {
+                model.exists = false;
+            });
+            return;
+        }
+        if (LineToAdd >= 0) {
+            lines[LineToAdd].exists = !leftSewLineAll.exists;
+        }
     }, game);
 
     this.remove = function () {

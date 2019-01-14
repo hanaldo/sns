@@ -1,4 +1,5 @@
 var LineToAdd = -1;
+var ActionNow = null;
 
 const app = new Vue({
     el: "#app",
@@ -7,6 +8,9 @@ const app = new Vue({
     },
     methods: {
         addLine(i) {
+            ActionNow = null;
+            PointerRemove.x = -50;
+            PointerRemove.y = -50;
             var isAdding = false;
             this.linesOn.forEach(function (item, index, array) {
                 if (index === i) {
@@ -23,6 +27,16 @@ const app = new Vue({
             } else {
                 LineToAdd = -1;
             }
+        },
+        clearLineButtons() {
+            for (var i = 0; i < this.linesOn.length; i++) {
+                Vue.set(this.linesOn, i, false);
+            }
+        },
+        actionRemove() {
+            LineToAdd = -1;
+            this.clearLineButtons();
+            ActionNow = "remove";
         }
     }
 });
